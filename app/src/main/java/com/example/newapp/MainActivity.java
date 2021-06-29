@@ -10,12 +10,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText inputLogin;
     private EditText inputPass;
     private Button buttonLogin;
     private Button buttonRegister;
+    private ArrayList<Korisnik> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,4 +73,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         }
     }
+
 }
