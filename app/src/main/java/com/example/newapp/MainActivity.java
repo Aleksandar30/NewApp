@@ -32,38 +32,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonRegister = findViewById(R.id.buttonRegister);
 
         buttonLogin.setOnClickListener(this);
+        buttonRegister.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
 
-        if (v.getId() == R.id.buttonLogin &&
-                inputLogin.getText().toString().equalsIgnoreCase("admin") &&
-                inputPass.getText().toString().equalsIgnoreCase("admin")
+        if (v.getId() == R.id.buttonLogin) {
+            if((inputLogin.getText().toString().equalsIgnoreCase("admin") &&
+                    inputPass.getText().toString().equalsIgnoreCase("admin"))){
+                Intent intent = new Intent(this, WelcomeActivity.class);
+                //Bundle extras = new Bundle();
+                //extras.putString("test", "test");
+                //intent.putExtras(extras);
+                startActivity(intent);
+                } else {
+                    // Username or password false, display and an error
+                    AlertDialog.Builder dlgAlert = new AlertDialog.Builder(this);
 
-        ) {
-            Intent intent = new Intent(this, WelcomeActivity.class);
-            //Bundle extras = new Bundle();
-            //extras.putString("test", "test");
-            //intent.putExtras(extras);
+                    dlgAlert.setMessage("wrong password or username");
+                    //dlgAlert.setTitle("Error Message...");
+                    dlgAlert.setPositiveButton("OK", null);
+                    dlgAlert.setCancelable(true);
+                    dlgAlert.create().show();
+
+                    dlgAlert.setPositiveButton("Ok",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+            }
+        }
+        if(v.getId() ==R.id.buttonRegister){
+            Intent intent = new Intent(this, RegisterActivity.class);
             startActivity(intent);
-        } else {
-            // Username or password false, display and an error
-            AlertDialog.Builder dlgAlert = new AlertDialog.Builder(this);
-
-            dlgAlert.setMessage("wrong password or username");
-            //dlgAlert.setTitle("Error Message...");
-            dlgAlert.setPositiveButton("OK", null);
-            dlgAlert.setCancelable(true);
-            dlgAlert.create().show();
-
-            dlgAlert.setPositiveButton("Ok",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-                    });
         }
     }
 }
